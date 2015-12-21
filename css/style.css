@@ -377,6 +377,13 @@ h1{
 }
 .advantage-item li {
     margin-bottom: 12px;
+    padding-left: 15px;
+    position: relative;
+}
+.advantage-item li:before {
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 .advantage-item li:before,
 .advantage-item li:after {
@@ -993,15 +1000,20 @@ h4.vacancy-name.show:before {
 .vacancy ul{
     margin-bottom: 14px;
 }
-.vacancy ul li{
-    /*background: url("../img/li-bg-black.png") left 10px no-repeat;*/
-    padding-left: 10px;
+.vacancy li{
     margin-bottom: 2px;
 }
 .vacancy-desc li span {
     display: inline-block;
-    .pr;
+    position: relative;
+    padding-left: 15px;
 }
+.vacancy li span:before {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
 .vacancy-desc li span:before,
 .vacancy-desc li span:after {
     color: #31a0db;
