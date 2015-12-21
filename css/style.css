@@ -103,7 +103,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 
 /* general
 -----------------------------------------------------------------------------*/
-
+.page-wrapper,
+.footer {
+    min-width: 1292px;
+}
 input,
 textarea {
     font-family: 'montserrat', sans-serif;
@@ -532,7 +535,14 @@ h1{
 .gallery-block li {
     display: inline-block;
     vertical-align: top;
-
+    width: 16.66%;
+    height: 198px;
+    overflow: hidden;
+}
+.gallery-block img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
 }
 .gallery-block a {
     display: block;
