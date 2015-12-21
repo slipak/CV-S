@@ -182,7 +182,7 @@ $(document).ready(function(){
     $('a[href*=#].anc').bind("click", function(e){
         var anchor = $(this);
         $('html, body').stop().animate({
-            scrollTop: $(anchor.attr('href')).offset().top - 110
+            scrollTop: $(anchor.attr('href')).offset().top - 69
         }, 700);
         highlightActiveItem();
         e.preventDefault();
