@@ -140,7 +140,7 @@ $(document).ready(function(){
         var dataCity = $(this).attr("data-city");
 
         $.ajax({
-            url: "http://www.malkosua.com/site/php/vacancies.php",
+            url: "./php/vacancies.php",
             dataType: "json",
             beforeSend: function() {
                 $('.vacancies-description').html('<p style="margin-top: 15px; margin-left: 30px;">Wait...</p>');
