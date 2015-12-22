@@ -432,7 +432,7 @@ h1{
     padding-top: 142px;
     padding-bottom: 135px;
     background-color: #0083db;
-    background-image: url('../img/images/solutions-pattern-bg.png');
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAJFBMVEWkpKT///+kpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKTsoD5rAAAADHRSTlMAAAwNKis9QXOKi5Gmzhp7AAAAMklEQVR4Ae3LuwEAIAhDQfwoaPbflxnSv+svholAIBAcBAKBECeXFbZUVkjpWWHWv05ojW8JYpcr/aUAAAAASUVORK5CYII=);
     background-repeat: repeat;
     background-position: 0 0;
 }
