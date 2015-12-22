@@ -524,7 +524,6 @@ h1{
 .team-wrapper {
     background-color: #f8f8f8;
     padding-top: 81px;
-    padding-bottom: 154px;
 }
 .team-wrapper .title-section{
     margin-bottom: 11px;
@@ -582,7 +581,7 @@ h1{
     right: 0;
     bottom: 0;
     background-color: #30abfe;
-    opacity: 0.69;
+    opacity: 0.5;
     -webkit-transition: opacity 500ms ease;
     -moz-transition: opacity 500ms ease;
     -ms-transition: opacity 500ms ease;

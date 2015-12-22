@@ -1,8 +1,8 @@
 <?php
 
-$dbuser = 'malkosua_beta';
-$dbpass = '$em0cleW$';
-$dbname = 'malkosua_beta';
+$dbuser = 'u_corevalu';
+$dbpass = 'F40FvNw0';
+$dbname = 'corevalue_com_ua';
 $dbhost = 'localhost';
 
 try
