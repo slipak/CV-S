@@ -583,7 +583,7 @@ h1{
     right: 0;
     bottom: 0;
     background-color: #30abfe;
-    opacity: 0.69;
+    opacity: 0.5;
     -webkit-transition: opacity 500ms ease;
     -moz-transition: opacity 500ms ease;
     -ms-transition: opacity 500ms ease;
