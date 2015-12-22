@@ -111,6 +111,18 @@ input,
 textarea {
     font-family: 'montserrat', sans-serif;
 }
+.vertical-middle:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em;
+}
+.vertical-middle .centered {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 99%;
+}
 .container {
     max-width: 100%!important;
     width: 1292px!important;
@@ -330,11 +342,23 @@ h1{
 /*main-wrapper
 -------------------------------------------------------------------------------------*/
 .main-wrapper {
-    background-image: url(img/main-section-bg-1.jpg);
-    background-position: center top;
-    background-repeat: no-repeat;
     text-align: center;
-    padding: 411px 0 278px;
+    min-width: 1292px;
+    position: relative;
+}
+.main-wrapper img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+.main-wrapper .text-block {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    padding-top: 110px;
 }
 .main-wrapper .title-main {
     margin-bottom: 24px;
