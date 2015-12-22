@@ -229,6 +229,7 @@ $(document).ready(function(){
 });
 
 $(window).load(function(){
+    highlightActiveItem();
     $(window).scroll(function(){
         headerTini();
         highlightActiveItem();
