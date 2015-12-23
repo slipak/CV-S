@@ -19,7 +19,7 @@ function insertVacancy(response, cityName){
                         '<h4 class="vacancy-name">' + objCity[proptInner].title + '</h4>' +
                         '<div class="vacancy-desc">' +
                          objCity[proptInner].content +
-                        '<a class="btn btn-default btn-sm" href="mailto:recruiting@malkosua.com">Send CV</a>' +
+                        '<a class="btn btn-default btn-sm" href="mailto:recruiting@corevalue.net">Send CV</a>' +
                         '<span class="btn btn-default btn-sm applyLinkedin" href="">Apply with LinkedIn</span>' +
                         '<script src="//platform.linkedin.com/in.js" type="text/javascript">' +
                             'api_key: hfr3bzpf13kw' +
