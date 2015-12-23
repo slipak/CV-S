@@ -278,6 +278,10 @@ h1{
     font-weight: 800;
     color: #ffffff;
     text-decoration: none;
+    text-align: center;
+}
+.btn + .btn {
+    margin-left: 10px;
 }
 .btn.blocked {
     box-sizing: border-box;
@@ -338,6 +342,10 @@ h1{
     background-color: transparent !important;
     /*border: 1px solid #fff !important;*/
     color: #ffffff !important;
+}
+.btn.btn-sm {
+    min-width: 0;
+    padding: 15px 30px;
 }
 /*main-wrapper
 -------------------------------------------------------------------------------------*/
@@ -862,22 +870,26 @@ h1{
     z-index: 200;
 }
 .popup{
+    padding: 20px 30px;
     position: fixed;
     z-index: 250;
     left:50%;
-    margin-left: -485px;
     top:50%;
     margin-top: -350px;
-    width:970px;
+    width: 970px;
     height: 700px;
+    margin-left: -485px;
     -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
     box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
     background: #ffffff;
     display: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
 }
 .popup .title-section {
     margin-bottom: 0;
-    padding: 10px 0 20px;
+    padding: 0 0 30px;
 }
 
 .popup-close{
@@ -890,15 +902,10 @@ h1{
     background: url("../img/popup-close.png");
 }
 .popup-menu{
-    margin-left: 27px;
     float: left;
     overflow: hidden;
     height: 614px;
-    width: 250px;
-}
-.menu-border-fix{
-    /*height: 100%;*/
-    /*border-right:1px solid #e6e6e6;*/
+    width: 30%;
 }
 .popup-menu ul {
     border-left: 1px solid #ece6db;
@@ -912,6 +919,9 @@ h1{
     list-style: none;
     border-bottom: 1px solid #ece6db;
     z-index: 1;
+}
+.popup-menu ul li.active{
+    z-index: 10;
 }
 .popup-menu ul li:before {
     border: 1px solid #0083db;
@@ -934,9 +944,7 @@ h1{
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     display: block;
-    padding-top: 16px;
-    padding-left: 14px;
-    padding-bottom: 12px;
+    padding: 16px 14px 12px;
     font-size: 16px;
     font-weight: 800;
     color: #cccccc;
@@ -959,17 +967,17 @@ h1{
 .vacancies-description{
     overflow-y: auto;
     float: right;
-    margin-right: 27px;
-    float: right;
-    width: 650px;
     border-top: 1px solid #ece6db;
+    width: 67%;
 }
 .vacancy{
     position: relative;
-    font-size: 15px;
     border: 1px solid #ece6db;
     border-bottom: 0;
     border-top: 0;
+    font-size: 16px;
+    line-height: 24px;
+    color: #323333;
 }
 .vacancy-desc{
     display: none;
@@ -977,7 +985,7 @@ h1{
     padding-bottom: 30px;
     padding-left: 15px;
     margin-top: 15px;
-    /*border-bottom: 1px solid #cccccc;*/
+    border-bottom: 1px solid #ece6db;
 }
 .vacancy h4{
     font-size: 16px;
@@ -989,9 +997,7 @@ h1{
 
 .vacancy h4.vacancy-name{
     cursor: pointer;
-    padding-top: 14px;
-    padding-bottom: 14px;
-    padding-left: 15px;
+    padding: 14px 15px;
     font-weight: 800;
     margin-bottom: 0;
     font-size: 24px;
@@ -1009,7 +1015,7 @@ h1{
     width: 11px;
     height: 11px;
     right: 27px;
-    top: 23px;
+    top: 19px;
 
 }
 .vacancy h4.vacancy-name:hover{
@@ -1025,15 +1031,13 @@ h4.vacancy-name.show:before {
 }
 .vacancy p{
     margin-bottom: 16px;
-    font-size: 16px;
-    line-height: 24px;
-    color: #323333;
 }
 .vacancy ul{
     margin-bottom: 14px;
 }
 .vacancy li{
     margin-bottom: 2px;
+    list-style: none;
 }
 .vacancy-desc li span {
     display: inline-block;
@@ -1060,16 +1064,6 @@ h4.vacancy-name.show:before {
     content: '/>';
     margin-left: 5px;
 }
-.vacancy .btn{
-    padding: 7px 57px;
-    text-transform: none;
-    margin-right: 16px;
-    font-size: 14px;
-    font-weight: 600;
-}
-.vacancy .btn.blue{
-    padding: 7px 18px;
-}
 h4.no-vacancies{
     margin-top: 15px;
     margin-left: 15px;
@@ -1078,7 +1072,6 @@ h4.no-vacancies{
 }
 .policy-description{
     font-size: 15px;
-    padding: 20px 30px 20px 30px;
     height: 553px;
     overflow-y: auto;
 }
@@ -1095,32 +1088,4 @@ h4.no-vacancies{
     margin-bottom: 16px;
     font-size: 18px;
     font-weight: bold;
-}
-
-/*old css*/
-
-.btn a{
-    color: #ffffff;
-    text-decoration: none;
-}
-
-.btn.red{
-    background: #981b22;
-}
-.btn.red:hover{
-    background: #80171c;
-}
-.btn.blue{
-    background: #2771aa;
-}
-.btn.blue:hover{
-    background: #1e5f90;
-}
-
-/*vid*/
-.videoBG_wrapper{
-    width:100%!important;
-}
-.videoBG{
-    width:100%!important;
 }

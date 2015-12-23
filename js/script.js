@@ -19,8 +19,8 @@ function insertVacancy(response, cityName){
                         '<h4 class="vacancy-name">' + objCity[proptInner].title + '</h4>' +
                         '<div class="vacancy-desc">' +
                          objCity[proptInner].content +
-                        '<a class="btn red" href="mailto:recruiting@malkosua.com">Send CV</a>' +
-                        '<span class="btn blue applyLinkedin" href="">Apply with LinkedIn</span>' +
+                        '<a class="btn btn-default btn-sm" href="mailto:recruiting@malkosua.com">Send CV</a>' +
+                        '<span class="btn btn-default btn-sm applyLinkedin" href="">Apply with LinkedIn</span>' +
                         '<script src="//platform.linkedin.com/in.js" type="text/javascript">' +
                             'api_key: hfr3bzpf13kw' +
                         '</script>' +
@@ -46,11 +46,11 @@ function insertVacancy(response, cityName){
 function popupHeight(){
     if ($(window).height() < 700){
         $('.popup').css({'height': $(window).height(), 'marginTop': -($(window).height() / 2)});
-        $('.popup-menu').css('height', $(window).height() - 86);
-        $('.vacancies-description').css('height', $(window).height() - 86);
-        $('.policy-description').css('height', $(window).height() - 126);
+        $('.popup-menu').css('height', $(window).height() - 143);
+        $('.vacancies-description').css('height', $(window).height() - 143);
+        $('.policy-description').css('height', $(window).height() - 180);
 
-        if (  ($(window).height() - 86) <= $('.popup-menu ul').height()){
+        if (  ($(window).height() - 143) <= $('.popup-menu ul').height()){
             $('.popup-menu').css('overflowY', 'scroll');
             $('.menu-border-fix').hide();
         }else{
@@ -59,8 +59,8 @@ function popupHeight(){
         }
     }else{
         $('.popup').css({'height': 700,'marginTop': -350});
-        $('.popup-menu').css('height', 614);
-        $('.vacancies-description').css('height', 600);
+        $('.popup-menu').css('height', 554);
+        $('.vacancies-description').css('height', 554);
         $('.policy-description').css('height', 553);
         $('.popup-menu').css('overflowY', 'hidden');
         $('.menu-border-fix').show();
@@ -160,9 +160,10 @@ $(document).ready(function(){
                     });
                     insertVacancy(response, dataCity);
                 //show vacancy
-                $('.popup-menu ul li').click(function(){
-                    $('.popup-menu li').removeClass('active');
-                    $(this).addClass('active');
+                $('.popup-menu ul li a').on('click', function (evt) {
+                   evt.preventDefault();
+                    var $this = $(this);
+                    $this.closest('li').addClass('active').siblings().removeClass('active');
                     var listCity = $(this).text();
                     insertVacancy(response, listCity);
                     accordion();
