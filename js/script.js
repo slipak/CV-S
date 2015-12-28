@@ -21,15 +21,6 @@ function insertVacancy(response, cityName){
                          objCity[proptInner].content +
                         '<a class="btn btn-default btn-sm" href="mailto:recruiting@corevalue.net">Send CV</a>' +
                         '<span class="btn btn-default btn-sm applyLinkedin" href="">Apply with LinkedIn</span>' +
-                        '<script src="//platform.linkedin.com/in.js" type="text/javascript">' +
-                            'api_key: hfr3bzpf13kw' +
-                        '</script>' +
-                        '<script type="IN/Apply" data-companyname="Malkos"' +
-                        'data-jobtitle="' + objCity[proptInner].title + '"'+
-                        'data-joblocation="Ukraine"' +
-                        'data-themecolor="#ee1d24"' +
-                        'data-email="recruiting@malkosua.com">'+
-                        '</script>' +
                         '</div></div>').appendTo('.vacancies-description');
                 }
             }else{
@@ -39,7 +30,50 @@ function insertVacancy(response, cityName){
         }
     }
     $('.applyLinkedin').click(function() {
-        $(this).parent().find('.IN-widget a').parent().click();
+        var $this = $(this),
+          vacancyTitle = $this.closest('.vacancy').find('.vacancy-name').text();
+
+        function funcSuccess(data){
+            var firstName = data.firstName,
+              lastName = data.lastName,
+              headline = data.headline,
+              linkedInUrl = data.siteStandardProfileRequest.url,
+
+              linkedInData = {
+
+                  'LinkedInName': lastName + ' ' + firstName,
+                  'LinkedInHeadline': headline,
+                  'LinkedInProfile': linkedInUrl,
+                  'vacancyTitle': vacancyTitle
+
+              };
+
+            $.ajax({
+                type: "POST",
+                url: "./php/mail.php",
+                data:  linkedInData,
+                success: function(message){
+                    console.log('Message send!');
+                },
+                error: function(message){
+                    console.log('error');
+                }
+            });
+        }
+
+        function funcError(error){
+            console.log(error);
+        }
+
+        function getProfileData() {
+            IN.API.Raw("/people/~:").result(funcSuccess).error(funcError);
+        }
+
+        if(IN.User.isAuthorized()) {
+            getProfileData();
+        } else {
+            IN.User.authorize(getProfileData);
+        }
     });
 };
 
