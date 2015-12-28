@@ -1089,3 +1089,53 @@ h4.no-vacancies{
     font-size: 18px;
     font-weight: bold;
 }
+
+/*dialog popup*/
+
+.dialog-popup {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    display: none;
+}
+
+.dialog-popup .mask {
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: 1;
+    background: rgba(0, 131, 219,0.9);
+}
+
+.dialog-popup .close-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAV1BMVEWipqWipqWipqWipqWipqWipqWipqWipqWipqWipqWipqWipqWipqWipqWipqWipqWipqWipqWipqWipqWipqWipqWipqWipqWipqWipqWipqWipqWipqWjYlNqAAAAHHRSTlMAAQIDBAkKDZCRlJeYm5ydoaKys7i5vMLD1tfdz24AdQAAAFlJREFUeNotzEcSgDAMQ1EbQgsQemi+/zlBUbR7o5kvzTWoYOUcaznNggKL2S6jgQnWigbQAV6FfDNIIs3huQsiBVjOeEjCF4GcAGWqlwjk8ir10f0A+636AFOoCUAy9NKzAAAAAElFTkSuQmCC);
+    width: 13px;
+    height: 13px;
+}
+.dialog-popup .title-block {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.dialog-popup .text-block {
+    font-size: 18px;
+    line-height: 24px;
+}
+.dialog-popup .popup-block {
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    top: 50%;
+    width: 250px;
+    margin-left: -125px;
+    background-color: #fff;
+    padding: 20px;
+}

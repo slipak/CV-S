@@ -53,7 +53,7 @@ function insertVacancy(response, cityName){
                 url: "./php/mail.php",
                 data:  linkedInData,
                 success: function(message){
-                    console.log('Message send!');
+                    dialogPopup('Message has been send!');
                 },
                 error: function(message){
                     console.log('error');
@@ -76,6 +76,24 @@ function insertVacancy(response, cityName){
         }
     });
 };
+
+function dialogPopup(text) {
+    var dialogHtml = '<div class="dialog-popup"><div class="mask"></div>'+
+      '<div class="popup-block">'+
+      '<a href="#" class="close-btn"></a>'+
+      '<div class="text-block">'+ text +'</div>'+
+      '</div>'+
+      '</div>';
+
+
+    $('.dialog-popup').remove();
+    $(dialogHtml).appendTo('body').fadeIn();
+
+    $('.dialog-popup .close-btn, .dialog-popup .mask').on('click', function (evt) {
+        evt.preventDefault();
+        $(this).closest('.dialog-popup').fadeOut();
+    });
+}
 
 function popupHeight(){
     if ($(window).height() < 700){
