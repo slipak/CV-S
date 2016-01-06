@@ -311,6 +311,7 @@ h1{
     cursor: pointer;
     text-transform: uppercase;
     min-width: 230px;
+    outline: none;
 }
 .btn.btn-default:hover {
     color: #0083db;
@@ -774,7 +775,8 @@ h1{
     line-height: 30px;
     margin-bottom: 37px;
 }
-.hello-form input[type=text]{
+.hello-form input[type=text],
+.hello-form input[type=email]{
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;

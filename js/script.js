@@ -136,7 +136,7 @@ function popupHeight(){
 }
 
 function formResponce(text) {
-    $('#HelloForm input:text,#HelloForm textarea').val("");
+    $('#HelloForm input,#HelloForm textarea').val("");
     $('#HelloFormMessage').text(text).delay(3000).fadeOut('slow');
     $('#HelloFormProcessing').hide();
 }
