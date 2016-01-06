@@ -331,7 +331,7 @@ $(document).ready(function(){
         else {
             location.hash = $(anchor.attr('href')).selector;
         }
-        if($(window).width() < 975) {
+        if($('body').width() < 993) {
             $('.top-nav ul').slideUp();
             $('.top-nav-btn').removeClass('active');
         }
