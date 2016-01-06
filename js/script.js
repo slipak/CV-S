@@ -2,9 +2,9 @@ function accordion(){
     $('.vacancy-name').bind("click", function(e){
         $(this).toggleClass('show');
         if($(this).hasClass('show')){
-            $(this).siblings('.vacancy-desc').slideDown();
+            $(this).siblings('.vacancy-desc').stop(true, true).slideDown();
         }else{
-            $(this).siblings('.vacancy-desc').slideUp();
+            $(this).siblings('.vacancy-desc').stop(true, true).slideUp();
         }
     });
 };
@@ -76,6 +76,21 @@ function insertVacancy(response, cityName){
         }
     });
 };
+// Equal Height
+//-----------------------------------------------------------------------------------------------------------
+
+(function( $ ) {
+    $.fn.equalheight = function() {
+        Array.max = function( array ){
+            return Math.max.apply( Math, array );
+        };
+        var heights = this.map(function() {
+            $(this).height('auto');
+            return $(this).height();
+        }).get();
+        return this.height(Array.max(heights));
+    };
+})(jQuery);
 
 function dialogPopup(text) {
     var dialogHtml = '<div class="dialog-popup"><div class="mask"></div>'+
@@ -128,7 +143,7 @@ function formResponce(text) {
 
 function highlightActiveItem() {
     var scrollPos = $(document).scrollTop();
-    $('.top-nav a').each(function (evt) {
+    $('.top-nav ul a').each(function (evt) {
         var $currentLink = $(this),
           refElement = $($currentLink.attr('href'));
 
@@ -137,7 +152,7 @@ function highlightActiveItem() {
         }
         if($(window).scrollTop() + $(window).height() == $(document).height()) {
             var lastElId = $('.footer').attr('id');
-            $('.top-nav a[href="#'+lastElId+'"]').addClass('active').closest('li').siblings().find('a').removeClass('active');;
+            $('.top-nav ul a[href="#'+lastElId+'"]').addClass('active').closest('li').siblings().find('a').removeClass('active');
         }
     });
 }
@@ -151,12 +166,27 @@ function headerTini() {
     }
 }
 
+// adaptive technologies items
+//-----------------------------------------------------------------------------------------------------------
+
+function technologiesGrid() {
+
+    var $technologieItem = $('.technologies-list .technologies-item'),
+      containerWidth = $('.technologies-list').width(),
+      technologieItemLength = $technologieItem.length,
+      widthItem = $technologieItem.width(),
+      numberItemInRow = (containerWidth / widthItem).toFixed();
+
+    $technologieItem.each(function (index) {
+        var $this = $(this);
+        $this.removeClass('top-row bottom-row');
+        if(index < numberItemInRow) $this.addClass('top-row');
+        if(index >= technologieItemLength - numberItemInRow) $this.addClass('bottom-row');
+    });
+
+}
+
 $(document).ready(function(){
-
-
-    highlightActiveItem();
-    headerTini();
-
 
     //
 //    $('.top-header').videoBG({
@@ -169,7 +199,10 @@ $(document).ready(function(){
 //        opacity:0.6
 //    });
 
-    //prettyPhoto
+
+    // Gallery Pretty Photo
+    //-----------------------------------------------------------------------------------------------------------
+
     $(".gallery a[rel^='prettyPhoto']").prettyPhoto({
         animation_speed:'fast',
         slideshow:10000,
@@ -179,7 +212,9 @@ $(document).ready(function(){
         opacity: 0.9
     });
 
-    //popup
+    // Show custom popup
+    //-----------------------------------------------------------------------------------------------------------
+
     $('.popup-show-policy').click(function(){
         $('.popup-bg').show();
         $('.popup-policy').show();
@@ -231,11 +266,14 @@ $(document).ready(function(){
         $('.popup-vacancies, .popup-policy').hide();
     });
 
-    //scrolling
+    // scroll to anchor
+    //-----------------------------------------------------------------------------------------------------------
+
     $('a[href*=#].anc').bind("click", function(e){
-        var anchor = $(this);
+        var anchor = $(this),
+            headerHeight = $('.header.tini').outerHeight();
         $('html, body').stop().animate({
-            scrollTop: $(anchor.attr('href')).offset().top - 69
+            scrollTop: $(anchor.attr('href')).offset().top - headerHeight
         }, 700);
         highlightActiveItem();
         e.preventDefault();
@@ -245,7 +283,14 @@ $(document).ready(function(){
         else {
             location.hash = $(anchor.attr('href')).selector;
         }
+        if($(window).width() < 975) {
+            $('.top-nav ul').slideUp();
+            $('.top-nav-btn').removeClass('active');
+        }
     });
+
+    // Hello Form submit
+    //-----------------------------------------------------------------------------------------------------------
 
     $('#HelloForm').submit(function(e) {
         $('.empty-field').each(function() {
@@ -279,18 +324,52 @@ $(document).ready(function(){
 
         return false;
     });
+
+    // mobile show/hide menu button
+    //-----------------------------------------------------------------------------------------------------------
+
+    $('.top-nav-btn').on('click', function (evt) {
+        evt.preventDefault();
+        evt.stopPropagation();
+        var $this = $(this),
+            $topNav = $('.top-nav ul');
+
+        if($this.hasClass('active')) {
+            $this.removeClass('active');
+            $topNav.slideUp();
+        } else {
+            $this.addClass('active');
+            $topNav.slideDown(function () {
+                $(document).on('click.namespace', function(e) {
+                    if($(e.target).closest('.top-nav ul').length == 0) {
+                        $('.top-nav ul').slideUp();
+                        $this.removeClass('active');
+                        $(document).off('click.namespace');
+                    }
+                });
+            });
+        }
+
+    });
+
 });
 
-$(window).load(function(){
-    highlightActiveItem();
-    $(window).scroll(function(){
+$(window).on({
+    load: function () {
         headerTini();
         highlightActiveItem();
-    });
-});
-
-$(window).resize(function(){
-   popupHeight();
+        $(window).scroll(function(){
+            headerTini();
+            highlightActiveItem();
+        });
+        $('.branch-list .branch-item').equalheight();
+        technologiesGrid();
+    },
+    resize: function () {
+        popupHeight();
+        $('.branch-list .branch-item').equalheight();
+        technologiesGrid();
+    }
 });
 
 
