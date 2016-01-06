@@ -402,6 +402,15 @@ $(document).ready(function(){
 
 });
 
+function adaptiveShowHideTopNav () {
+    if($('body').width() > 992) {
+        $('.top-nav ul').show();
+    } else {
+        $('.top-nav ul').hide();
+    }
+}
+
+
 $(window).on({
     load: function () {
         highlightActiveItem();
@@ -417,6 +426,7 @@ $(window).on({
         popupHeight();
         $('.branch-list .branch-item').equalheight();
         technologiesGrid();
+        adaptiveShowHideTopNav();
     }
 });
 
