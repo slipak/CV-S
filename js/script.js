@@ -186,7 +186,101 @@ function technologiesGrid() {
 
 }
 
+// Vacancy Ajax Request
+//-----------------------------------------------------------------------------------------------------------
+
+function vacancyAjaxRequest(dataCity, successCallBack) {
+
+    $.ajax({
+        url: "./php/vacancies.php",
+        dataType: "json",
+        beforeSend: function() {
+            $('.vacancies-description').html('<div class="preload-block" style="">Wait...</div>');
+        },
+        success: function(response){
+            console.log(response);
+            //menu
+            $(".popup-menu ul").html("");
+            for(var propt in response){
+                $("<li><a href=\"#\">" + propt + "</a></li>").appendTo(".popup-menu ul");
+            }
+            //show primary vacancy
+            $('.popup-menu li').removeClass('active');
+            $('.popup-menu li').each(function(){
+                if ($(this).children('a').html() == dataCity){
+                    $(this).addClass('active');
+                }
+            });
+            insertVacancy(response, dataCity);
+            //show vacancy
+            $('.popup-menu ul li a').on('click', function (evt) {
+                evt.preventDefault();
+                var $this = $(this);
+                $this.closest('li').addClass('active').siblings().removeClass('active');
+                var listCity = $(this).text();
+                insertVacancy(response, listCity);
+                accordion();
+                return false;
+            });
+            accordion();
+            if(successCallBack) {
+                successCallBack();
+            }
+        }
+    });
+}
+
+
+// go to section
+//-----------------------------------------------------------------------------------------------------------
+
+function goToSection(id, speed) {
+    $('html, body').stop().animate({
+        scrollTop: $(id).offset().top - 69
+    }, speed)
+}
+
+// router
+//-----------------------------------------------------------------------------------------------------------
+
+function router() {
+    var url = location.hash,
+
+      arrUrl = url.split('/');
+
+
+    if(arrUrl[0]) {
+        goToSection(arrUrl[0], 1);
+    }
+
+    if(arrUrl[0] === '#vacancies' && arrUrl[1]) {
+
+        var hashCity = arrUrl[1].charAt(0).toUpperCase() + arrUrl[1].slice(1);
+
+        if(arrUrl[2]) var hashVacancyTitle = arrUrl[2].replace(/-/g,'').toLowerCase();
+
+        $('.popup-bg').show();
+        $('.popup-vacancies').show();
+
+        popupHeight();
+
+        vacancyAjaxRequest(hashCity, function(){
+            var $vacancyName = $('.vacancies-description .vacancy .vacancy-name');
+
+            $vacancyName.each(function () {
+                if(hashVacancyTitle === $(this).text().toLowerCase().replace(/\s+/g,'')) {
+                    $(this).click();
+                }
+            });
+
+        });
+
+    }
+}
+
 $(document).ready(function(){
+
+    headerTini();
 
     // Gallery Pretty Photo
     //-----------------------------------------------------------------------------------------------------------
@@ -214,40 +308,7 @@ $(document).ready(function(){
         popupHeight();
         var dataCity = $(this).attr("data-city");
 
-        $.ajax({
-            url: "./php/vacancies.php",
-            dataType: "json",
-            beforeSend: function() {
-                $('.vacancies-description').html('<p style="margin-top: 15px; margin-left: 30px;">Wait...</p>');
-            },
-            success: function(response){
-                //menu
-                $(".popup-menu ul").html("");
-                for(var propt in response){
-                    $("<li><a href=\"#\">" + propt + "</a></li>").appendTo(".popup-menu ul");
-                }
-                //show primary vacancy
-                    $('.popup-menu li').removeClass('active');
-                    $('.popup-menu li').each(function(){
-                        if ($(this).children('a').html() == dataCity){
-                            $(this).addClass('active');
-                        }
-                    });
-                    insertVacancy(response, dataCity);
-                //show vacancy
-                $('.popup-menu ul li a').on('click', function (evt) {
-                   evt.preventDefault();
-                    var $this = $(this);
-                    $this.closest('li').addClass('active').siblings().removeClass('active');
-                    var listCity = $(this).text();
-                    insertVacancy(response, listCity);
-                    accordion();
-                    IN.parse(document.body);
-                    return false;
-                });
-                accordion();
-            }
-        });
+        vacancyAjaxRequest(dataCity);
     });
     $('.popup-close, .popup-bg').click(function(){
         $('.popup-bg').hide();
@@ -258,11 +319,10 @@ $(document).ready(function(){
     //-----------------------------------------------------------------------------------------------------------
 
     $('a[href*=#].anc').bind("click", function(e){
-        var anchor = $(this),
-            headerHeight = $('.header.tini').outerHeight();
-        $('html, body').stop().animate({
-            scrollTop: $(anchor.attr('href')).offset().top - headerHeight
-        }, 700);
+        var anchor = $(this);
+
+        goToSection(anchor.attr('href'), 700);
+
         highlightActiveItem();
         e.preventDefault();
         if(history.pushState) {
@@ -344,7 +404,6 @@ $(document).ready(function(){
 
 $(window).on({
     load: function () {
-        headerTini();
         highlightActiveItem();
         $(window).scroll(function(){
             headerTini();
@@ -352,6 +411,7 @@ $(window).on({
         });
         $('.branch-list .branch-item').equalheight();
         technologiesGrid();
+        router();
     },
     resize: function () {
         popupHeight();
