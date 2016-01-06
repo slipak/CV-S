@@ -331,7 +331,7 @@ $(document).ready(function(){
         else {
             location.hash = $(anchor.attr('href')).selector;
         }
-        if($('body').width() < 993) {
+        if(window.innerWidth < 993) {
             $('.top-nav ul').slideUp();
             $('.top-nav-btn').removeClass('active');
         }
@@ -403,7 +403,7 @@ $(document).ready(function(){
 });
 
 function adaptiveShowHideTopNav () {
-    if($('body').width() > 992) {
+    if(window.innerWidth > 992) {
         $('.top-nav ul').show();
     } else {
         $('.top-nav ul').hide();
