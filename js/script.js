@@ -188,18 +188,6 @@ function technologiesGrid() {
 
 $(document).ready(function(){
 
-    //
-//    $('.top-header').videoBG({
-//        mp4:'video/startup.mp4',
-//        ogv:'video/startup.ogv',
-//        webm:'video/startup.webm',
-//        scale:true,
-//        height:640,
-//        zIndex:0,
-//        opacity:0.6
-//    });
-
-
     // Gallery Pretty Photo
     //-----------------------------------------------------------------------------------------------------------
 
