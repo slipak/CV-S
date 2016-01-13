@@ -157,7 +157,7 @@ function highlightActiveItem() {
     });
 }
 
-function headerTini() {
+function headerTiny() {
     var scrollPos = $(document).scrollTop();
     if($(this).scrollTop() > 0 && scrollPos > 0){
         $('.header').addClass('tini');
@@ -280,7 +280,7 @@ function router() {
 
 $(document).ready(function(){
 
-    headerTini();
+    headerTiny();
 
     // Gallery Pretty Photo
     //-----------------------------------------------------------------------------------------------------------
@@ -415,7 +415,7 @@ $(window).on({
     load: function () {
         highlightActiveItem();
         $(window).scroll(function(){
-            headerTini();
+            headerTiny();
             highlightActiveItem();
         });
         $('.branch-list .branch-item').equalheight();
