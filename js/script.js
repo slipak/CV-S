@@ -11,6 +11,7 @@ function accordion(){
 function insertVacancy(response, cityName){
     for(var propt in response){
         var objCity = response[propt];
+        propt = propt.toLowerCase();
         if(propt == cityName){
             if(objCity.length !== 0){
                 $('.vacancies-description').html('');
@@ -198,7 +199,6 @@ function vacancyAjaxRequest(dataCity, successCallBack) {
             $('.vacancies-description').html('<div class="preload-block" style="">Wait...</div>');
         },
         success: function(response){
-            console.log(response);
             //menu
             $(".popup-menu ul").html("");
             for(var propt in response){
@@ -255,7 +255,7 @@ function router() {
 
     if(arrUrl[0] === '#vacancies' && arrUrl[1]) {
 
-        var hashCity = arrUrl[1].charAt(0).toUpperCase() + arrUrl[1].slice(1);
+        var hashCity = arrUrl[1].toLowerCase();
 
         if(arrUrl[2]) var hashVacancyTitle = arrUrl[2].replace(/-/g,'').toLowerCase();
 
