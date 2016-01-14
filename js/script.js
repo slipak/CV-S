@@ -217,7 +217,7 @@ function vacancyAjaxRequest(dataCity, successCallBack) {
                 evt.preventDefault();
                 var $this = $(this);
                 $this.closest('li').addClass('active').siblings().removeClass('active');
-                var listCity = $(this).text();
+                var listCity = $(this).text().toLowerCase();
                 insertVacancy(response, listCity);
                 accordion();
                 return false;
@@ -306,7 +306,7 @@ $(document).ready(function(){
         $('.popup-bg').show();
         $('.popup-vacancies').show();
         popupHeight();
-        var dataCity = $(this).attr("data-city");
+        var dataCity = $(this).attr("data-city").toLowerCase();
 
         vacancyAjaxRequest(dataCity);
     });
