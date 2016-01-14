@@ -207,7 +207,7 @@ function vacancyAjaxRequest(dataCity, successCallBack) {
             //show primary vacancy
             $('.popup-menu li').removeClass('active');
             $('.popup-menu li').each(function(){
-                if ($(this).children('a').html() == dataCity){
+                if ($(this).children('a').html().toLowerCase() == dataCity){
                     $(this).addClass('active');
                 }
             });
