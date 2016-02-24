@@ -1193,6 +1193,16 @@ h1{
 .popup-menu ul li:hover a {
     color: #0083db;
 }
+.popup-menu ul li.empty-vacancies.active:before,
+.popup-menu ul li.empty-vacancies:hover:before {
+    opacity: 0;
+}
+.popup-menu ul li.empty-vacancies a,
+.popup-menu ul li.empty-vacancies.active a,
+.popup-menu ul li.empty-vacancies:hover  a{
+    color: #999;
+    cursor: default;
+}
 .vacancies-description{
     overflow-y: auto;
     float: right;

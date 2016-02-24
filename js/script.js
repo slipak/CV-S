@@ -211,9 +211,13 @@ function vacancyAjaxRequest(dataCity, successCallBack) {
             //menu
             $(".popup-menu ul").html("");
             for(var propt in response){
-                var attrDataCity = propt.toLowerCase();
+                var attrDataCity = propt.toLowerCase(),
 
-                $("<li><a data-city="+attrDataCity+"  href=\"#\">" + propt + " (" +response[propt].length + ")</a></li>").appendTo(".popup-menu ul");
+                    helperClass = '';
+
+                response[propt].length === 0 ? helperClass += 'empty-vacancies' : '';
+
+                $("<li class='"+helperClass+"'><a data-city="+attrDataCity+"  href=\"#\">" + propt + " (" +response[propt].length + ")</a></li>").appendTo(".popup-menu ul");
             }
             //show primary vacancy
             $('.popup-menu li').removeClass('active');
@@ -226,12 +230,16 @@ function vacancyAjaxRequest(dataCity, successCallBack) {
             //show vacancy
             $('.popup-menu ul li a').on('click', function (evt) {
                 evt.preventDefault();
-                var $this = $(this);
-                $this.closest('li').addClass('active').siblings().removeClass('active');
-                var listCity = $(this).data('city');
-                insertVacancy(response, listCity);
-                accordion();
-                return false;
+                var $this = $(this),
+                    listCity = $this.data('city');
+
+                if(! $this.closest('li').hasClass('empty-vacancies')) {
+                    $this.closest('li').addClass('active').siblings().removeClass('active');
+                    insertVacancy(response, listCity);
+                    accordion();
+                    return false;
+                }
+
             });
             accordion();
             if(successCallBack) {
