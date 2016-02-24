@@ -454,6 +454,8 @@ h1{
     text-align: center;
     position: relative;
     overflow: hidden;
+    padding-top: 70px;
+    min-width: 320px;
 }
 .main-wrapper img {
     max-width: 100%;
@@ -467,7 +469,7 @@ h1{
     bottom: 0;
     right: 0;
     height: 100%;
-    padding-top: 110px;
+    padding-top: 69px;
 }
 .main-wrapper .title-main {
     margin-bottom: 24px;
@@ -1438,7 +1440,7 @@ h4.no-vacancies{
         margin-right: 0;
     }
     .main-wrapper .text-block {
-        padding-top: 69px;
+        padding-top: 35px;
     }
     .main-wrapper .btn {
         min-width: 0;
