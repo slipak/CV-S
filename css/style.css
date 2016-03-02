@@ -773,7 +773,7 @@ h1{
     text-transform: uppercase;
 }
 .main-footer {
-    margin-bottom: 112px;
+    margin-bottom: 55px;
 }
 .contacts-block {
     width: 58%;
@@ -817,7 +817,7 @@ h1{
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    margin-bottom: 27px;
+    margin-bottom: 15px;
 }
 .branch-list .branch-item a {
     color: #ffffff;
@@ -839,7 +839,7 @@ h1{
     margin-bottom: 5px;
 }
 .contacts-links-container {
-    padding: 45px 0 0 0;
+    padding: 20px 0 0 0;
 }
 .contacts-links-container .media-element.fl {
     width: 50%;
