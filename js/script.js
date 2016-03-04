@@ -11,6 +11,37 @@ function accordion(){
             $thisSiblingsName.removeClass('show');
             $thisSiblingsDesc.stop(true, true).slideUp();
             $this.siblings('.vacancy-desc').stop(true, true).slideDown();
+
+            /* calculate vacancy position to top popup
+            * ----------------------------------------------------------*/
+
+            var vacancyPosTop = 0,
+
+                vacancyIndex = $this.closest('.vacancy').index();
+
+            $('.vacancy').each(function (index) {
+
+                var thisHeight = $(this).find('.vacancy-name').outerHeight();
+
+                if(index === vacancyIndex) {
+                    return false;
+                }
+
+                vacancyPosTop+=thisHeight;
+            });
+
+            if(window.innerWidth >= 560 ){
+                $('.vacancies-description').stop(true, true).animate({ scrollTop:  vacancyPosTop + "px" });
+            } else {
+                /* mobile calculate vacancy position to top popup
+                 * ----------------------------------------------------------*/
+                var popupScrollTop = $('.popup-vacancies').scrollTop(),
+                    descriptionOffsetTop = $('.vacancies-description').position().top,
+                    mobilePositionTop = popupScrollTop + descriptionOffsetTop + vacancyPosTop;
+
+                $('.popup-vacancies').stop(true, true).animate({scrollTop:   mobilePositionTop + 'px'});
+            }
+
         }else{
             $this.siblings('.vacancy-desc').stop(true, true).slideUp();
         }
